@@ -1,9 +1,13 @@
 select
-	ar.artista as artistas,
-    al.album as albuns,
-    c.cancao as cancoes
-from cancao as c
-inner join album as al
-on c.album_id = al.album_id
-inner join artista as ar
-on al.artista_id = ar.artista_id;
+    (
+		select
+			count(c.cancao)
+		from cancao as c
+    ) as cancoes,
+    count(ar.artista) as artistas,
+    (
+		select
+			count(al.album)
+		from album as al
+    ) as albuns
+from artista as ar;
