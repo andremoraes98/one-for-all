@@ -39,18 +39,18 @@ CREATE TABLE SpotifyClone.usuario(
 ) engine = InnoDB;
 
 CREATE TABLE SpotifyClone.historico(
-	historico_id int auto_increment primary key not null,
     usuario_id int not null,
     cancao_id int not null,
+	constraint primary key(usuario_id, cancao_id),
     data datetime not null,
     foreign key (usuario_id) references usuario (usuario_id),
     foreign key (cancao_id) references cancao (cancao_id)
 ) engine = InnoDB;
 
 CREATE TABLE SpotifyClone.usuario_seguindo_artista(
-	id int auto_increment primary key not null,
     usuario_id int not null,
     artista_id int not null,
+	constraint primary key(usuario_id, artista_id),
     foreign key (usuario_id) references usuario (usuario_id),
     foreign key (artista_id) references artista (artista_id)
 ) engine = InnoDB;
@@ -180,3 +180,28 @@ VALUES
     (10, 21, '2017-12-04 05:33:43'),
     (10, 12, '2017-07-27 05:24:49'),
     (10, 13, '2017-12-25 01:03:57');
+
+INSERT INTO SpotifyClone.usuario_seguindo_artista (usuario_id, artista_id)
+VALUES
+    (1, 1),
+    (1, 4),
+    (1, 3),
+    (2, 1),
+    (2, 3),
+    (3, 2),
+    (3, 1),
+    (4, 4),
+    (5, 5),
+    (5, 6),
+    (6, 6),
+    (6, 3),
+    (6, 1),
+    (7, 2),
+    (7, 5),
+    (8, 1),
+    (8, 5),
+    (9, 6),
+    (9, 4),
+    (9, 3),
+    (10, 2),
+    (10, 6);
